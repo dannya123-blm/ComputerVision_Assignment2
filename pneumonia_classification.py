@@ -19,10 +19,10 @@ img_width = 128
 img_height = 128
 img_channels = 3
 fit = True #make fit false if you do not want to train the network again
-train_dir = 'C:\\Users\\SimonMcLoughlin\\Documents\\research\\datasets\\chest_xray\\train'
-test_dir = 'C:\\Users\\SimonMcLoughlin\\Documents\\research\\datasets\\chest_xray\\test'
+train_dir = r'F:\ComputerVision_Assignment2\chest_xray\train'
+test_dir = r'F:\ComputerVision_Assignment2\chest_xray\test'
 
-with tf.device('/gpu:0'):
+with tf.device('/CPU:0'):
     
     #create training,validation and test datatsets
     train_ds,val_ds = tf.keras.preprocessing.image_dataset_from_directory(
