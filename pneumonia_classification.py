@@ -58,6 +58,8 @@ with tf.device('/CPU:0'):
     #create model
     model = tf.keras.models.Sequential([
         Rescaling(1.0/255),
+        tf.keras.layers.RandomFlip("horizontal"),
+        tf.keras.layers.RandomRotation(0.1),
         Conv2D(16, (3,3), activation = 'relu', input_shape = (img_height,img_width, img_channels)),
         MaxPooling2D(2,2),
         Conv2D(32, (3,3), activation = 'relu'),
