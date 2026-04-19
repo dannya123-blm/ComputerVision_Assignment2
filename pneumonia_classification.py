@@ -1,5 +1,3 @@
-
-
 from __future__ import print_function
 
 import keras
@@ -10,6 +8,7 @@ from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D, Rescalin
 from keras.optimizers import RMSprop,Adam
 import matplotlib.pyplot as plt
 import numpy as np
+import time
 
 
 batch_size = 12
@@ -79,12 +78,19 @@ with tf.device('/CPU:0'):
     save_callback = tf.keras.callbacks.ModelCheckpoint("pneumonia.keras",save_freq='epoch',save_best_only=True)
 
     if fit:
+        start_time = time.time()
+        
         history = model.fit(
             train_ds,
             batch_size=batch_size,
             validation_data=val_ds,
             callbacks=[save_callback],
             epochs=epochs)
+        
+        end_time = time.time()
+        training_time = end_time - start_time
+        print(f'Total training time: {training_time:.2f} seconds')
+        
     else:
         model = tf.keras.models.load_model("pneumonia.keras")
 
